@@ -1,0 +1,174 @@
+/* // @author：Infinity
+// @time：2020-07-27 */
+@charset "utf-8";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* 常用元素 */
+body,
+div,
+span,
+p,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+header,
+button,
+i {
+  margin: 0;
+  padding: 0;
+  /* // 清除1像素外边框 */
+  outline: none;
+}
+
+img,
+abbr,
+acronym {
+  border: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  outline: 0;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+em {
+  font-style: normal;
+}
+
+input {
+  outline: none !important;
+}
+
+textarea {
+  resize: none;
+}
+
+.hide,
+.hidden {
+  display: none;
+}
+
+/* 浮动 */
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.fn {
+  float: none;
+}
+
+/* 清除浮动 */
+.clear {
+  clear: both;
+  overflow: hidden;
+  height: 0;
+}
+
+.clearfix {
+  display: block;
+  zoom: 1;
+}
+
+.clearfix::after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+/* 文字溢出省略 */
+.ell {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ell2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/* 文字对齐方式 */
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* table */
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+table tr,
+table th,
+table td {
+  border-collapse: collapse;
+}
+
+/* 去除chrome记住密码输入框背景色为黄色 */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+}
+
+/* 去除input蓝色边框 */
+input {
+  outline: 0;
+}
+
+/* 去除IEinput x */
+::-ms-clear,
+::-ms-reveal {
+  display: none;
+}
+
+ /* IE6 fixed 解决闪动 */
+ /* *html {
+   background-image: url(about:blank);
+  background-attachment: fixed;
+ } */

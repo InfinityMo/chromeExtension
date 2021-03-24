@@ -1,0 +1,30 @@
+{
+  "name": "Chrome插件",
+  "manifest_version": 2,
+  "version": "1.0",
+  "description": "infinityChrome插件",
+  "browser_action": {
+    "default_icon": "img/cat.png",
+    "default_title": "这是一个chrome插件",
+    "default_popup": "popup.html"
+  },
+  // 需要直接注入页面的js
+  "content_scripts": [
+    {
+      "matches": [
+        "https://sycm.taobao.com/*"
+      ],
+      "js": [
+        "js/jquery-1.8.3.js",
+        "js/service.js"
+      ],
+      // 代码注入的时间，可选值： "document_start", "document_end", or "document_idle"，最后一个表示页面空闲时，默认document_idle
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "https://sycm.taobao.com/"
+  ]
+}
