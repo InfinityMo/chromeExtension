@@ -3,6 +3,12 @@
   "manifest_version": 2,
   "version": "1.0",
   "description": "infinityChrome插件",
+  "icons": {
+    "16": "img/cat.png",
+    "32": "img/cat.png",
+    "48": "img/cat.png",
+    "128": "img/cat.png"
+  },
   "browser_action": {
     "default_icon": "img/cat.png",
     "default_title": "这是一个chrome插件",
@@ -25,6 +31,14 @@
   ],
   "permissions": [
     "tabs",
-    "https://sycm.taobao.com/"
-  ]
+    "https://sycm.taobao.com/",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+  "background": {
+    "scripts": [
+      "js/background.js"
+    ],
+    "persistent": true
+  }
 }

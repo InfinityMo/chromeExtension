@@ -18,7 +18,7 @@ function orientation () {
       // console.log($('.oui-canary-btn'))
       $('.ant-btn').each((index2, element2) => {
         if (element2.innerText === '月') {
-          element2.addEventListener('click', function () {
+          element2.addEventListener('click', () => {
             console.log('保存')
           })
           // element2.on("click", function () {
@@ -32,3 +32,4 @@ function orientation () {
 function saveMonthSCDP () {
   console.log('保存')
 }
+
