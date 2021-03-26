@@ -30,15 +30,15 @@
     }
   ],
   "permissions": [
-    "tabs",
-    "https://sycm.taobao.com/",
     "webRequest",
-    "webRequestBlocking"
+    "webRequestBlocking",
+    "https://sycm.taobao.com/"
   ],
   "background": {
-    "scripts": [
-      "js/background.js"
-    ],
-    "persistent": true
-  }
+    "page": "background.html"
+    // "scripts": [
+    //   "background.js"
+    // ]
+  },
+  "options_page": "data.html"
 }
