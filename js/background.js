@@ -55,6 +55,36 @@
 //   },
 //   ["blocking", "requestHeaders", "extraHeaders"]
 // );
+// 动态页面加载当前插件
+chrome.runtime.onInstalled.addListener(function () {
+  chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
+    chrome.declarativeContent.onPageChanged.addRules([{
+      conditions: [
+        new chrome.declarativeContent.PageStateMatcher({
+          // pageUrl: { urlContains: 'sycm.taobao.com' }
+          pageUrl: { urlContains: 'baidu.com' }
+        })
+      ],
+      actions: [new chrome.declarativeContent.ShowPageAction()]
+    }])
+  })
+
+})
+var intercept = []
+// chrome.storage.sync.get("Interface", function (data) {
+
+//   intercept = data["Interface"];
+// });
+
+// chrome.storage.onChanged.addListener(function (data, areaName) {
+//   try {
+//     intercept = data["Interface"]["newValue"];
+//   }
+//   catch (err) {
+
+//   }
+// });
+
 chrome.webRequest.onBeforeRequest.addListener(
   function (details) {
     if (details.type !== 'xmlhttprequest') {

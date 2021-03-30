@@ -4,13 +4,13 @@
   "version": "1.0",
   "description": "infinityChrome插件",
   "icons": {
-    "16": "img/cat.png",
-    "32": "img/cat.png",
-    "48": "img/cat.png",
-    "128": "img/cat.png"
+    "16": "img/cat2.png",
+    "32": "img/cat2.png",
+    "48": "img/cat2.png",
+    "128": "img/cat2.png"
   },
-  "browser_action": {
-    "default_icon": "img/cat.png",
+  "page_action": {
+    "default_icon": "img/cat2.png",
     "default_title": "这是一个chrome插件",
     "default_popup": "popup.html"
   },
@@ -18,7 +18,8 @@
   "content_scripts": [
     {
       "matches": [
-        "https://sycm.taobao.com/*"
+        // "https://sycm.taobao.com/*"
+        "https://www.baidu.com/*"
       ],
       "js": [
         "js/jquery-1.8.3.js",
@@ -30,12 +31,14 @@
     }
   ],
   "web_accessible_resources": [
-    "js/main.js"
+    "js/inject.js"
   ],
   "permissions": [
     "webRequest",
     "webRequestBlocking",
-    "https://sycm.taobao.com/"
+    // "https://sycm.taobao.com/",
+    "https://www.baidu.com/",
+    "declarativeContent"
   ],
   "background": {
     "page": "background.html"

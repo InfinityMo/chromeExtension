@@ -9,6 +9,20 @@
 //   // // $('#su').click()
 //   // console.log(1111)
 // }
+// $.ajax({
+//   url: "",
+//   type: 'get',
+//   contentType: 'application/json;charset=utf-8',
+//   dataType: 'json',
+//   async: false, // 同步
+//   success: function (result) {
+//     var resObj = JSON.parse(result);
+//     chrome.storage.sync.set({ 'Interface': resObj.data });
+//   },
+//   error: function (result) {
+//     alert("获取接口拦截数据失败")
+//   }
+// });
 
 // // 获取市场大盘页面对象
 

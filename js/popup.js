@@ -1,0 +1,3 @@
+$('#day').click(function () {
+  debugger
+})

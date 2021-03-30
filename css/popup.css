@@ -1,0 +1,16 @@
+.popup-wrap {
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  /* background-color: blue; */
+}
+
+.link {
+  color: red;
+}
+
+.link a {
+  font-size: 16px;
+  cursor: pointer;
+}
