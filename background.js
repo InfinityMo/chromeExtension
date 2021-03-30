@@ -55,25 +55,28 @@
 //   },
 //   ["blocking", "requestHeaders", "extraHeaders"]
 // );
-
 chrome.webRequest.onBeforeRequest.addListener(
   function (details) {
-    // console.log(details)
-    chrome.tabs.sendMessage(details.tabId, details, function (response) {
-      // alert(response)
-      // 此处可以修改response...
-      // redirectUrl = "data:application/json;charset=UTF-8;base64,"
-      // console.log("request监控器->" + details.listener + ":" + details.url);
-      // console.log(response);
-      // try {
-      //   toList(response, listener[details.listener][2], details.listener);
-      // } catch (err) {
-      //   console.log(err);
-      //   console.log("request监控器->" + details.listener + " listener:" + listener[details.listener][2]);
-      // }
-
-    });
+    if (details.type !== 'xmlhttprequest') {
+      return {}
+    }
+    if (details.url.endsWith("#c_url")) {
+      details.url.substr(0, details.url.indexOf('c_url') - 1)
+      // return { cancel: true }
+      return {}
+    }
+    if (details.url.indexOf('https://sycm.taobao.com/mc/mq/supply/mkt/sea') >= 0) {
+      // console.log(details)
+      chrome.tabs.sendMessage(details.tabId, details);
+      // return { cancel: true }
+    }
+    // chrome.tabs.query({ 'active': true, 'lastFocusedWindow': true }, function (tabs) {
+    //   var dirUrl = tabs[0].url;
+    // });
+    // return { redirectUrl: dirUrl || '' }
+    return {}
   },
-  { urls: ["*://*.sycm.taobao.com/*", "*://*.bdstatic.com/*"] },
+  { urls: ["*://*.sycm.taobao.com/*"] },
   ["blocking"]
 )
+
