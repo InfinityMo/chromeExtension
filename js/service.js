@@ -1,52 +1,3 @@
-// // document.title = '123修改百度页面标题'
-// window.onload = function () {
-//   setTimeout(() => {
-//     orientation()
-//   }, 2000)  //定位市场大盘时拉取数据
-//   // // var input = $('#kw')
-//   // // input.val('chrome插件开发文档官方')
-//   // // // console.log(input)
-//   // // $('#su').click()
-//   // console.log(1111)
-// }
-// $.ajax({
-//   url: "",
-//   type: 'get',
-//   contentType: 'application/json;charset=utf-8',
-//   dataType: 'json',
-//   async: false, // 同步
-//   success: function (result) {
-//     var resObj = JSON.parse(result);
-//     chrome.storage.sync.set({ 'Interface': resObj.data });
-//   },
-//   error: function (result) {
-//     alert("获取接口拦截数据失败")
-//   }
-// });
-
-// // 获取市场大盘页面对象
-
-// function orientation () {
-//   $('.name').each((index, element) => {
-//     if (element.innerText === '市场大盘') {
-//       // console.log($('.oui-canary-btn'))
-//       $('.ant-btn').each((index2, element2) => {
-//         if (element2.innerText === '月') {
-//           element2.addEventListener('click', () => {
-//             console.log('保存')
-//           })
-//           // element2.on("click", function () {
-//           //   console.log('保存')
-//           // })
-//         }
-//       })
-//     }
-//   })
-// }
-// function saveMonthSCDP () {
-//   console.log('保存')
-// }
-
 // let insertContent = `
 //             <script>
 //             (function () {
@@ -118,7 +69,29 @@
 //     return true;
 //   }
 // );
-
+// 同步获取需要拦截的接口
+$.ajax({
+  // url: "https://172.165.207.162:8083/retailapp/dropdownlist",
+  url: '',
+  type: 'post',
+  contentType: 'application/json;charset=utf-8',
+  dataType: 'json',
+  async: false, // 同步
+  success: function (result) {
+    // var resObj = JSON.parse(result);
+    // chrome.storage.sync.set({ 'Interface': resObj.data });
+  },
+  error: function (result) {
+    // alert("获取接口拦截数据失败")
+    chrome.storage.sync.set({
+      intercept: [
+        "https://sycm.taobao.com/mc/mq/supply/mkt/sea/cate.json",
+        "https://sycm.taobao.com/mc/mq/supply/mkt/sea/read/v2/cate.json",
+        "https://sycm.taobao.com/mc/mq/supply/deal/list.json"
+      ]
+    })
+  }
+});
 chrome.runtime.onMessage.addListener(
   function (request, sender) {
     if (request.requestBody && request.requestBody.formData) {
@@ -151,12 +124,20 @@ chrome.runtime.onMessage.addListener(
         return response.text();
       })
       .then(function (responseData) {
-        console.log(new Date())
+        // console.log(new Date())
         console.log(responseData)
       });
     return true;
   }
 );
+// 注入inject脚本
+// document.addEventListener('DOMContentLoaded', function () {
+//   jsPath = 'js/inject.js';
+//   var inject = document.createElement('script');
+//   inject.src = chrome.extension.getURL(jsPath);
+//   inject.setAttribute('type', 'text/javascript');
+//   document.head.appendChild(inject)
+// })
 // chrome.runtime.onMessage.addListener(
 //   function (request, sender, sendResponse) {
 //     debugger

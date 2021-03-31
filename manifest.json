@@ -1,25 +1,24 @@
 {
-  "name": "infinityChrome插件",
+  "name": "TLSE",
   "manifest_version": 2,
   "version": "1.0",
-  "description": "infinityChrome插件",
+  "description": "联恩生意参谋数据导出，自动化获取数据",
   "icons": {
-    "16": "img/cat2.png",
-    "32": "img/cat2.png",
-    "48": "img/cat2.png",
-    "128": "img/cat2.png"
+    "16": "img/logo5.png",
+    "48": "img/logo5.png",
+    "128": "img/logo5.png"
   },
   "page_action": {
-    "default_icon": "img/cat2.png",
-    "default_title": "这是一个chrome插件",
+    "default_icon": "img/logo5.png",
+    "default_title": "联恩生意参谋数据导出，自动化获取数据",
     "default_popup": "popup.html"
   },
   // 需要直接注入页面的js
   "content_scripts": [
     {
       "matches": [
-        // "https://sycm.taobao.com/*"
-        "https://www.baidu.com/*"
+        "https://sycm.taobao.com/*"
+        // "https://www.baidu.com/*"
       ],
       "js": [
         "js/jquery-1.8.3.js",
@@ -34,10 +33,11 @@
     "js/inject.js"
   ],
   "permissions": [
+    "storage",
     "webRequest",
     "webRequestBlocking",
-    // "https://sycm.taobao.com/",
-    "https://www.baidu.com/",
+    "https://sycm.taobao.com/",
+    // "https://www.baidu.com/",
     "declarativeContent"
   ],
   "background": {

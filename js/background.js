@@ -55,6 +55,11 @@
 //   },
 //   ["blocking", "requestHeaders", "extraHeaders"]
 // );
+var interceptArr = []
+chrome.storage.sync.get('intercept', function (res) {
+  interceptArr = res['intercept']
+  // console.log(interceptArr)
+})
 // 动态页面加载当前插件
 chrome.runtime.onInstalled.addListener(function () {
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
@@ -68,9 +73,8 @@ chrome.runtime.onInstalled.addListener(function () {
       actions: [new chrome.declarativeContent.ShowPageAction()]
     }])
   })
-
 })
-var intercept = []
+
 // chrome.storage.sync.get("Interface", function (data) {
 
 //   intercept = data["Interface"];
@@ -95,11 +99,14 @@ chrome.webRequest.onBeforeRequest.addListener(
       // return { cancel: true }
       return {}
     }
-    if (details.url.indexOf('https://sycm.taobao.com/mc/mq/supply/mkt/sea') >= 0) {
-      // console.log(details)
-      chrome.tabs.sendMessage(details.tabId, details);
-      // return { cancel: true }
-    }
+    interceptArr.forEach(i => {
+      if (details.url.startsWith(i)) {
+        // console.log(details)
+        chrome.tabs.sendMessage(details.tabId, details);
+        // return { cancel: true }
+      }
+    })
+
     // chrome.tabs.query({ 'active': true, 'lastFocusedWindow': true }, function (tabs) {
     //   var dirUrl = tabs[0].url;
     // });
@@ -107,6 +114,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     return {}
   },
   { urls: ["*://*.sycm.taobao.com/*"] },
+  // { urls: ["*://*.baidu.com/*"] },
   ["blocking"]
 )
 
